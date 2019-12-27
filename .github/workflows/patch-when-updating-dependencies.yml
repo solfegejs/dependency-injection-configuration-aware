@@ -8,6 +8,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Echo
+        env:
+          LABELS: ${{ toJson(github.event.pull_request.labels) }}
+        run: echo "$LABELS"
+        
       - name: Test
         if: contains(github.event.pull_request.labels, 'dependencies')
         run: echo 'ok'
